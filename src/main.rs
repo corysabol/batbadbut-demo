@@ -4,8 +4,11 @@ use std::process::Command;
 async fn get_server_info(path: web::Path<(String,)>) -> impl Responder {
     log::info!("{:?}", path);
 
+    let server = path.0.clone();
+    println!("{server}");
+
     let output = Command::new("cmd")
-        .args(["/C", "systeminfo", format!("/S {}", path.0).as_str()])
+        .args(["/C", "systeminfo", "/S", server.as_str()])
         .output();
 
     match output {
@@ -33,7 +36,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .wrap(middleware::Logger::default())
-            .route("/server_info/{system}", web::get().to(get_server_info))
+            .route("/server_info/{server}", web::get().to(get_server_info))
     })
     .bind("127.0.0.1:9999")?
     .run()
