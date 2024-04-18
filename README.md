@@ -7,7 +7,7 @@ This repository is for educational purposes only.
 ## Usage
 
 ### Pre-built binary
-- Get the pre-built windows binary from the [releases]().
+- Get the pre-built windows binary from the [releases](https://github.com/corysabol/batbadbut-demo/releases).
 - Run the server binary `./badbatbut-demo.exe`
 
 ### Build from source
