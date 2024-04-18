@@ -8,7 +8,7 @@ async fn get_server_info(path: web::Path<(String,)>) -> impl Responder {
     println!("{server}");
 
     let output = Command::new("cmd")
-        .args(["/C", "systeminfo", "/S", server.as_str()])
+        .args(["/C", "serverinfo.bat", server.as_str()])
         .output();
 
     match output {
